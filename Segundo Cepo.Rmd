@@ -1,0 +1,114 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Datos Macroeconomicos del Segundo Control de Cambios 2019-2020
+#
+# From: BCRA
+# --------------------------------------------------------------------------------------- #
+
+
+library(readxl)
+library(corrplot) 
+library(PerformanceAnalytics) 
+library(quantmod)
+library(highcharter)
+library(dplyr)
+library(ggplot2) 
+library(viridis)
+library(lubridate)
+library(dplyr)
+library(plotly)
+library(corrplot) 
+library(PerformanceAnalytics) 
+library(quantmod)
+library(highcharter)
+library(dplyr)
+library(plotly)
+library(viridis)
+library(hrbrthemes)
+library(tseries)
+library(PerformanceAnalytics)
+library(urca)
+library(aTSA)
+
+# --------------------------------------------------------------------------------------- #
+
+
+segundocepo=read_excel("Promedio Semana Segundo Cepo.xlsx")
+
+
+setwd("C:/Users/54116/Desktop/Carpetas/Trabajos en R/Variables Financieras")
+
+
+
+# --------------------------------------------------------------------------------------- #
+
+# Variables de series de tiempo
+
+brecha = ts(segundocepo$`Log Brecha`)
+
+tasa= ts(segundocepo$`Tasa de Interes Ponderada`)
+
+bm= ts(segundocepo$BM)
+
+reservas= ts(segundocepo$Reservas)
+
+
+# Variables de series de tiempo en logaritmos
+
+
+logtasa= log(tasa)
+
+logbm= log(bm)
+
+logreservas = log(reservas)
+
+
+# Variables de series de tiempo en primeras diferencias
+
+
+dlogbrecha = diff(brecha, lag=1, differences = 1)
+
+dlogtasa= diff(logtasa, lag=1, differences = 1)
+
+dlogbm= diff(logbm, lag=1, differences = 1)
+
+dlogreservas = diff(logreservas, lag=1, differences = 1)
+
+
+# --------------------------------------------------------------------------------------- #
+
+# Graficos de series de tiempo
+
+
+plot(brecha, main="Logaritmo de la Brecha Cambiaria")
+
+plot(logtasa, main="Logaritmo de la Tasa de Interes")
+
+plot(logbm, main="Logaritmo de la Base Monetaria")
+
+plot(logreservas, main="Logaritmo de las Reservas")
+
+
+# --------------------------------------------------------------------------------------- #
+
+# Graficos de correlaciones
+
+
+muestra = ts.intersect(brecha, logtasa, logbm, logreservas)
+
+muestra = as.data.frame(muestra)
+
+chart.Correlation(muestra[1:4])
+
+
+
+```
