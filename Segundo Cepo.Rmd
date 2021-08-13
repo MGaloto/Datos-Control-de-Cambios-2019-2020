@@ -15,28 +15,23 @@ output: html_notebook
 # --------------------------------------------------------------------------------------- #
 
 
+
 library(readxl)
 library(corrplot) 
-library(PerformanceAnalytics) 
-library(quantmod)
-library(highcharter)
-library(dplyr)
 library(ggplot2) 
 library(viridis)
 library(lubridate)
 library(dplyr)
-library(plotly)
-library(corrplot) 
-library(PerformanceAnalytics) 
 library(quantmod)
 library(highcharter)
-library(dplyr)
 library(plotly)
 library(viridis)
 library(hrbrthemes)
 library(tseries)
 library(PerformanceAnalytics)
 library(urca)
+library(tidyr)
+library(FactoMineR)
 library(aTSA)
 
 # --------------------------------------------------------------------------------------- #
